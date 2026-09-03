@@ -12,3 +12,7 @@ class PhysicsForm1(forms.Form):
 
 class PhysicsForm2(forms.Form):
     lambda1=forms.FloatField(label='Enter wavelength:')
+
+class PhysicsForm3(forms.Form):
+    u=forms.IntegerField(label='Enter initial velocity:')
+    theta=forms.IntegerField(label='Enter the projection angle:')

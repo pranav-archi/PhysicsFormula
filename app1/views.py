@@ -4,8 +4,8 @@ from app1.forms import *
 
 h=6.626e-34
 c=3e8
-# Create your views here.
-from django.http import HttpResponse
+g=9.8
+
 def home(request):     
     return render(request,'app1/index.html')
 
@@ -18,10 +18,20 @@ def calc_final_velocity2(u,a,t):
 def calc_displacement(u,a,t):
     return u*t+0.5*a*(t**2)
 
-
 def energy_calc(lambda1):
     return (h*c)/lambda1;
 
+def calc_time_flight(theta,u):   
+    theta_radian=math.radians(theta)
+    return (2*u*(math.sin(theta_radian)))/g
+    
+def calc_max_height(theta,u):    
+    theta_radian=math.radians(theta)   
+    return (u**2*(math.sin(theta_radian))**2)/(2*g)
+
+def calc_horizontal_range(theta,u):
+    theta_radian=math.radians(theta)
+    return (u**2*(math.sin(2*theta_radian)))/g
 
 #v^2=u^2+2as
 def final_velocity1(request):
@@ -74,3 +84,39 @@ def energy_atom(request):
             return render(request,'app1/formula3.html',{'param2':result,'form':form1})
     else: form1=PhysicsForm2() 
     return render(request,'app1/formula3.html',{'form':form1})  
+
+def time_flight(request):
+    if request.method=='POST':
+            form1=PhysicsForm3(request.POST)
+            if form1.is_valid():
+                data = form1.cleaned_data
+                u=data.get('u')
+                theta=data.get('theta')
+                result=calc_time_flight(theta,u)
+                return render(request,'app1/formula4.html',{'param2':result,'form':form1})
+    else: form1=PhysicsForm3() 
+    return render(request,'app1/formula4.html',{'form':form1}) 
+
+def max_height(request):
+    if request.method=='POST':
+        form1=PhysicsForm3(request.POST)
+        if form1.is_valid():
+            data = form1.cleaned_data
+            u=data.get('u')
+            theta=data.get('theta')
+            result=calc_max_height(theta,u)
+            return render(request,'app1/formula5.html',{'param2':result,'form':form1})
+    else: form1=PhysicsForm3() 
+    return render(request,'app1/formula5.html',{'form':form1})
+
+def horizontal_range(request):
+    if request.method=='POST':
+        form1=PhysicsForm3(request.POST)
+        if form1.is_valid():
+            data = form1.cleaned_data
+            u=data.get('u')
+            theta=data.get('theta')
+            result=calc_horizontal_range(theta,u)
+            return render(request,'app1/formula6.html',{'param2':result,'form':form1})
+    else: form1=PhysicsForm3() 
+    return render(request,'app1/formula6.html',{'form':form1})
