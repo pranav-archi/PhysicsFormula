@@ -1,0 +1,12 @@
+article{
+    font-family: 'Courier New', Courier, monospace;
+    display: block;
+    padding: 20px;
+    margin: auto;
+    width: 100%;
+    border: 1px solid black;
+    background-color: #f4f4f4; 
+}
+a{
+    text-decoration: none;
+}
