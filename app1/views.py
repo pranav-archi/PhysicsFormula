@@ -43,9 +43,9 @@ def final_velocity1(request):
             a=data.get('a')
             s=data.get('s')
             result=calc_final_velocity1(u,a,s)
-            return render(request,'app1/formula.html',{'param1':result,'form':form1})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)'})
     else: form1=PhysicsForm() 
-    return render(request,'app1/formula.html',{'form':form1})  
+    return render(request,'app1/formulas.html',{'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)'})  
 
 #v=u+at
 def final_velocity2(request):
@@ -57,9 +57,9 @@ def final_velocity2(request):
             a=data.get('a')
             t=data.get('t')
             result=calc_final_velocity2(u,a,t)
-            return render(request,'app1/formula1.html',{'param2':result,'form':form1})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'2nd Kinematic Equation(v=u+at)'})
     else: form1=PhysicsForm1() 
-    return render(request,'app1/formula1.html',{'form':form1})  
+    return render(request,'app1/formulas.html',{'form':form1,'title':'2nd Kinematic Equation(v=u+at)'})  
 
 def displacement(request):
     if request.method=='POST':
@@ -70,9 +70,9 @@ def displacement(request):
                 a=data.get('a')
                 t=data.get('t')
                 result=calc_displacement(u,a,t)
-                return render(request,'app1/formula2.html',{'param2':result,'form':form1})
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'3rd Kinematic Equation(s=ut+1/2at^2)'})
     else: form1=PhysicsForm1() 
-    return render(request,'app1/formula2.html',{'form':form1})  
+    return render(request,'app1/formulas.html',{'form':form1,'title':'3rd Kinematic Equation(s=ut+1/2at2)'})  
 
 def energy_atom(request):
     if request.method=='POST':
@@ -81,9 +81,9 @@ def energy_atom(request):
             data = form1.cleaned_data
             lambda1=data.get('lambda1')
             result=energy_calc(lambda1)
-            return render(request,'app1/formula3.html',{'param2':result,'form':form1})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Energy of a light'})
     else: form1=PhysicsForm2() 
-    return render(request,'app1/formula3.html',{'form':form1})  
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Energy of a light'})  
 
 def time_flight(request):
     if request.method=='POST':
@@ -93,9 +93,9 @@ def time_flight(request):
                 u=data.get('u')
                 theta=data.get('theta')
                 result=calc_time_flight(theta,u)
-                return render(request,'app1/formula4.html',{'param2':result,'form':form1})
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Time of flight of a Projectile'})
     else: form1=PhysicsForm3() 
-    return render(request,'app1/formula4.html',{'form':form1}) 
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Time of flight of a Projectile'}) 
 
 def max_height(request):
     if request.method=='POST':
@@ -105,9 +105,9 @@ def max_height(request):
             u=data.get('u')
             theta=data.get('theta')
             result=calc_max_height(theta,u)
-            return render(request,'app1/formula5.html',{'param2':result,'form':form1})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Maximum height of an Object in a Projectile'})
     else: form1=PhysicsForm3() 
-    return render(request,'app1/formula5.html',{'form':form1})
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Maximum height of an Object in a Projectile'})
 
 def horizontal_range(request):
     if request.method=='POST':
@@ -117,6 +117,7 @@ def horizontal_range(request):
             u=data.get('u')
             theta=data.get('theta')
             result=calc_horizontal_range(theta,u)
-            return render(request,'app1/formula6.html',{'param2':result,'form':form1})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Horizontal of an Object in a Projectile'})
     else: form1=PhysicsForm3() 
-    return render(request,'app1/formula6.html',{'form':form1})
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Horizontal of an Object in a Projectile'})
+
