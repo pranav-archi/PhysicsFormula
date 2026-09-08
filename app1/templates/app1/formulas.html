@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total formulas</title>
+</head>
+<body>
+    <h2>1st Kinematic Equation v^2=u^2+2as</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Calculate Final Velocity</button>
+    </form>
+    <p>Final Velocity:{{param2}}</p>
+    <hr>
+    <h2>2nd Kinematic Equation v=u+at</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Calculate Final Velocity</button>
+    </form>
+    <p>Final Velocity:{{param2}}</p>
+    <hr>
+    <h2>3rd Kinematic Equation s=ut+1/2at^2</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Calculate Displacement</button>
+    </form>
+    <p>Displacement:{{param2}}</p>
+    <hr>
+    <h2>Energy of an atom</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Calculate energy</button>
+    </form>
+    <p>Energy of an atom:{{param2|stringformat:".1e"}}</p>
+    <h2>Time of flight calculation</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Calculate time</button>
+    </form>
+    <p>Time of flight of an object in a projectile:{{param2}}</p>
+    <h2>Max height calculation</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Calculate time</button>
+    </form>
+    <p>Maximum height of an object in a projectile:{{param2}}</p>
+    <h2>Horizontal Range calculation</h2>
+    <form method="post" action="horizontal_range/">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Click here</button>
+    </form>
+    <p>Horizontal range of an object in projectile:{{param2}}</p>
+</body>
+</html>
