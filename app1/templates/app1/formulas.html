@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,74 +6,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Total formulas</title>
 </head>
+
 <body>
-    <h1>{{title}}</h1>
-    {% if request.path == '/app1/final_velocity1/' %}
+
+    <h1>{{ title }}</h1>
+
+    {% if formula == 'final_velocity1' %}
         <form method="POST">
             {% csrf_token %}
-            {{form.as_p}}
+            {{ form.as_p }}
             <button type="submit">Calculate Final Velocity</button>
         </form>
-        <p>Final Velocity: {{param2}}</p>
-    {% endif %}
-        
-    
-    {% if request.path == '/app1/final_velocity2/' %}
-        <form method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Calculate Final Velocity</button>
-        </form>
-       <p>Final Velocity: {{param2}}</p>
+        <p>Final Velocity: {{ param2 }}</p>
     {% endif %}
 
-    {% if request.path == '/app1/displacement/' %}
-        <form method="POST" action="/displacement/">
+    {% if formula == 'final_velocity2' %}
+        <form method="POST">
             {% csrf_token %}
-            {{form.as_p}}
+            {{ form.as_p }}
+            <button type="submit">Calculate Final Velocity</button>
+        </form>
+        <p>Final Velocity: {{ param2 }}</p>
+    {% endif %}
+
+    {% if formula == 'displacement' %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
             <button type="submit">Calculate Displacement</button>
         </form>
-        <p>Displacement: {{param2}}</p>
-    {% endif %}
-    
-    {% if request.path == '/app1/energy_atom/' %}
-        <form method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Calculate energy</button>
-        </form>
-       <p>Energy of an atom: {{param2|stringformat:".3e"}}</p>
-    {% endif %}
-        
-    
-    {% if request.path == '/app1/time_of_flight/' %}
-        <form method="post" >
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Calculate time</button>
-        </form>
-        <p>Time of flight of an object in a projectile: {{param2}}</p>
+        <p>Displacement: {{ param2 }}</p>
     {% endif %}
 
-    
-    {% if request.path == '/app1/max_height/' %}
-        <form method="post" >
+    {% if formula == 'energy_light' %}
+        <form method="POST">
             {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Calculate time</button>
+            {{ form.as_p }}
+            <button type="submit">Calculate Energy</button>
         </form>
-        <p>Maximum height of an object in a projectile: {{param2}}</p>
+        <p>Energy of light: {{ param2|stringformat:".3e" }}</p>
     {% endif %}
 
-    
-    {% if request.path == '/app1/horizontal_range/' %}
-        <form method="post" >
+    {% if formula == 'time_flight' %}
+        <form method="POST">
             {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Click here</button>
+            {{ form.as_p }}
+            <button type="submit">Calculate Time</button>
         </form>
-        <p>Horizontal range of an object in projectile: {{param2}}</p>
+        <p>Time of flight of an object in a projectile: {{ param2 }}</p>
     {% endif %}
 
+    {% if formula == 'max_height' %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Maximum Height</button>
+        </form>
+        <p>Maximum height of an object in a projectile: {{ param2 }}</p>
+    {% endif %}
+
+    {% if formula == 'horizontal_range' %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Range</button>
+        </form>
+        <p>Horizontal range of an object in projectile: {{ param2 }}</p>
+    {% endif %}
+
+    {% if formula == 'par_plate_capacitance' %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Capacitance</button>
+        </form>
+        <p>Capacitance of parallel plate capacitor: {{ param2|stringformat:".2e" }}</p>
+    {% endif %}
+
+    {% if formula == 'half_life' %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Half Life</button>
+        </form>
+        <p>Half life of an atom: {{ param2|stringformat:".2e" }}</p>
+    {% endif %}
+    
+    {% if formula == 'kinetic_energy' %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Kinetic Energy</button>
+        </form>
+        <p>Kinetic Energy: {{ param2}}</p>
+    {% endif %}
+    
+    
 </body>
 </html>

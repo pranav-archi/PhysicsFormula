@@ -15,25 +15,34 @@
         {% csrf_token %}
         <div>
             <article>
-                <a href="final_velocity1/">Calculate final velocity(v2=u2+2as)</a>
+                <a href="{% url "final_velocity1" %}">Calculate final velocity(v2=u2+2as)</a>
             </article><br><br>
             <article>
-                <a href="final_velocity2/">Calculate final velocity(v=u+at)</a>
+                <a href="{% url "final_velocity2" %}">Calculate final velocity(v=u+at)</a>
             </article><br><br>
             <article>
-                <a href="displacement/">Find displacement here</a>
+                <a href="{% url "displacement" %}">Find displacement here</a>
             </article><br><br>
             <article>
-                <a href="energy_atom/">Calculate energy</a>
+                <a href="{% url "energy_light" %}">Calculate energy</a>
             </article><br><br>
             <article>
-                <a href="time_flight/">Calculate time of flight</a>
+                <a href="{% url "time_flight" %}">Calculate time of flight</a>
             </article><br><br>
             <article>
-                <a href="max_height/">Calculate max height</a>
+                <a href="{% url "max_height" %}">Calculate max height</a>
             </article><br><br>
             <article>
-                <a href="horizontal_range/">Calculate range here</a>
+                <a href="{% url "horizontal_range" %}">Calculate range here</a>
+            </article><br><br>
+            <article>
+                <a href="{% url "par_plate_capacitance" %}">Calculate capacitance here</a>
+            </article><br><br>
+            <article>
+                <a href="{% url "half_life" %}">Calculate half life</a>
+            </article><br><br>
+            <article>
+                <a href="{% url "kinetic_energy" %}">Calculate kinetic energy</a>
             </article><br><br>
         </div>
     </form>
