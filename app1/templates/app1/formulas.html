@@ -101,6 +101,51 @@
         <p>Kinetic Energy: {{ param2}}</p>
     {% endif %}
     
+    {% if formula == 'capacitor_pot_energy' %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Potential Energy</button>
+        </form>
+        <p>Potential Energy of a Capacitor: {{ param2|stringformat:".2e"}}</p>
+    {% endif %}
+
+    {% if formula == 'gravitational_pot_energy' %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Gravitational Potential Energy</button>
+        </form>
+        <p>Gravitational Potential Energy: {{ param2}}</p>
+    {% endif %}
+
     
+    {% if formula == 'ohm_law' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find voltage</button>
+        </form>
+        <p>Ohm Voltage:{{param2|stringformat:".2e"}}</p>
+    {% endif %}
+
+    {% if formula == 'snell_law' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find angle for medium 2</button>
+        </form>
+        <p>Incident Angle of Medium 2:{{param2}}</p>
+    {% endif %}
+
+    {% if formula == 'emf_conductor' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find emf</button>
+        </form>
+        <p>EMF of a conductor:{{param2}}</p>
+    {% endif %}
+        
 </body>
 </html>

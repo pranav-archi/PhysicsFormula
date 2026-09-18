@@ -28,4 +28,25 @@ class PhysicsForm5(forms.Form):
 class PhysicsForm6(forms.Form):
     m=forms.IntegerField(label='Enter the mass:')
     v=forms.IntegerField(label='Enter the velocity:')
+
+class PhysicsForm7(forms.Form):
+    C=forms.FloatField(label="Enter the capacitance:")
+    V=forms.FloatField(label="Enter the voltage:")
     
+class PhysicsForm8(forms.Form):
+    m=forms.IntegerField(label="Enter the mass:")
+    h=forms.IntegerField(label="Enter the height:")
+    
+class PhysicsForm9(forms.Form):
+    I=forms.FloatField(label='Enter the electric current:')
+    R=forms.FloatField(label='Enter the resistance:')
+    
+class PhysicsForm10(forms.Form):
+    theta1=forms.IntegerField(label='Enter the incident angle for medium 1:')
+    n1=forms.FloatField(label='Enter the refractive index of medium 1:')
+    n2=forms.FloatField(label='Enter the refractive index of medium 2:')
+    
+class PhysicsForm11(forms.Form):
+    B=forms.FloatField(label='Enter the magnetic field strength:')
+    l=forms.FloatField(label='Enter the length of the wire:')
+    v=forms.FloatField(label='Enter the velocity:')

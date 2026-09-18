@@ -51,7 +51,28 @@ def calc_half_life(decay_const):
 def calc_kinetic_energy(m,v):
     kin_energy=0.5*m*(v**2)
     return kin_energy
-#v^2=u^2+2as
+
+def calc_cap_potential_energy(C,V):
+    U_c=0.5*C*(V**2)
+    return U_c
+    
+def calc_grav_potential_energy(m,h):
+    U_g=m*g*h
+    return U_g
+    
+def calc_voltage(I,R):
+    V=I*R
+    return V
+
+def calc_incident_angle(theta1,n1,n2):
+    theta_radian=math.sin(math.radians(theta1))
+    theta2=math.asin((n1*theta_radian)/n2)
+    return math.degrees(theta2)
+
+def calc_emf_conductor(B,l,v):
+    emf=B*l*v
+    return emf
+
 def final_velocity1(request):
     if request.method=='POST':
         form1=PhysicsForm(request.POST)
@@ -65,7 +86,7 @@ def final_velocity1(request):
     else: form1=PhysicsForm() 
     return render(request,'app1/formulas.html',{'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)','formula':'final_velocity1'})  
 
-#v=u+at
+    
 def final_velocity2(request):
     if request.method=='POST':
         form1=PhysicsForm1(request.POST)
@@ -165,13 +186,75 @@ def half_life(request):
 
 def kinetic_energy(request):
     if request.method=='POST':
-        form1= PhysicsForm5(request.POST)
+        form1= PhysicsForm6(request.POST)
         if form1.is_valid():
             data = form1.cleaned_data
             m=data.get('m')
             v=data.get('v')
             result=calc_kinetic_energy(m,v)
             return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Kinetic Energy','formula':'kinetic_energy'})
-    else: form1=PhysicsForm5()
+    else: form1=PhysicsForm6()
     return render(request,'app1/formulas.html',{'form':form1,'title':'Kinetic Energy','formula':'kinetic_energy'}) 
-       
+
+def capacitor_pot_energy(request):
+    if request.method=='POST':
+        form1=PhysicsForm7(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            C=data.get('C')
+            V=data.get('V')
+            result=calc_cap_potential_energy(C,V)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Potential energy of a Capacitor','formula':'capacitor_pot_energy'})
+    else: form1=PhysicsForm7()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Potential energy of a Capacitor','formula':'capacitor_pot_energy'})
+
+def grav_pot_energy(request):
+    if request.method=='POST':
+        form1=PhysicsForm8(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            m=data.get('m')
+            h=data.get('h')
+            result=calc_grav_potential_energy(m,h)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Gravitational Potential energy','formula':'gravitational_pot_energy'})
+    else: form1=PhysicsForm8()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Potential energy of a Capacitor','formula':'capacitor_pot_energy'})
+
+def ohm_law(request):
+    if request.method=='POST':
+        form1=PhysicsForm9(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            I=data.get('I')
+            R=data.get('R')
+            result=calc_voltage(I,R)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Ohm's Law",'formula':'ohm_law'})
+    else: form1=PhysicsForm9()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Ohm's Law",'formula':'ohm_law'})
+
+def snell_law(request):
+    if request.method=='POST':
+        form1=PhysicsForm10(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            theta1=data.get('theta1')
+            n1=data.get('n1')
+            n2=data.get('n2')
+            result=calc_incident_angle(theta1,n1,n2)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Snell's Law",'formula':'snell_law'})
+    else: form1=PhysicsForm10()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Snell's Law",'formula':'snell_law'})
+
+def emf_wire(request):
+    if request.method=='POST':
+            form1=PhysicsForm11(request.POST)
+            if form1.is_valid():
+                data=form1.cleaned_data
+                B=data.get('B')
+                l=data.get('l')
+                v=data.get('v')
+                result=calc_emf_conductor(B,l,v)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"EMF of a conductor",'formula':'emf_conductor'})
+    else: form1=PhysicsForm11()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"EMF of a conductor",'formula':'emf_conductor'})
+    

@@ -13,4 +13,9 @@ urlpatterns = [
     path('capacitance/', views.parallel_plate_capacitance, name='par_plate_capacitance'),
     path('half_life/', views.half_life, name='half_life'),
     path('energy_kinetic/', views.kinetic_energy, name='kinetic_energy'),
+    path('capacitor_pot_energy/',views.capacitor_pot_energy,name='capacitor_pot_energy'),
+    path('grav_pot_energy/', views.grav_pot_energy, name='gravitational_pot_energy'),
+    path('ohm_law/',views.ohm_law,name='ohm_law'),
+    path('snell_law/', views.snell_law, name='snell_law'),
+    path('emf_conductor/', views.emf_wire,name='emf_conductor'),
 ]
