@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Total formulas</title>
+    <title>Formula Names</title>
 </head>
 
 <body>
 
     <h1>{{ title }}</h1>
 
-    {% if formula == 'final_velocity1' %}
+    {% if request.resolver_match.url_name == 'final_velocity1' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -20,7 +20,7 @@
         <p>Final Velocity: {{ param2 }}</p>
     {% endif %}
 
-    {% if formula == 'final_velocity2' %}
+    {% if request.resolver_match.url_name == 'final_velocity2' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -29,7 +29,7 @@
         <p>Final Velocity: {{ param2 }}</p>
     {% endif %}
 
-    {% if formula == 'displacement' %}
+    {% if request.resolver_match.url_name == 'displacement' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -38,7 +38,7 @@
         <p>Displacement: {{ param2 }}</p>
     {% endif %}
 
-    {% if formula == 'energy_light' %}
+    {% if request.resolver_match.url_name == 'energy_light' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -47,7 +47,7 @@
         <p>Energy of light: {{ param2|stringformat:".3e" }}</p>
     {% endif %}
 
-    {% if formula == 'time_flight' %}
+    {% if request.resolver_match.url_name == 'time_flight' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -56,7 +56,7 @@
         <p>Time of flight of an object in a projectile: {{ param2 }}</p>
     {% endif %}
 
-    {% if formula == 'max_height' %}
+    {% if request.resolver_match.url_name == 'max_height' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -65,7 +65,7 @@
         <p>Maximum height of an object in a projectile: {{ param2 }}</p>
     {% endif %}
 
-    {% if formula == 'horizontal_range' %}
+    {% if request.resolver_match.url_name == 'horizontal_range' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -74,7 +74,7 @@
         <p>Horizontal range of an object in projectile: {{ param2 }}</p>
     {% endif %}
 
-    {% if formula == 'par_plate_capacitance' %}
+    {% if request.resolver_match.url_name == 'par_plate_capacitance' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -83,7 +83,7 @@
         <p>Capacitance of parallel plate capacitor: {{ param2|stringformat:".2e" }}</p>
     {% endif %}
 
-    {% if formula == 'half_life' %}
+    {% if request.resolver_match.url_name == 'half_life' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -92,7 +92,7 @@
         <p>Half life of an atom: {{ param2|stringformat:".2e" }}</p>
     {% endif %}
     
-    {% if formula == 'kinetic_energy' %}
+    {% if request.resolver_match.url_name == 'kinetic_energy' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -101,7 +101,7 @@
         <p>Kinetic Energy: {{ param2}}</p>
     {% endif %}
     
-    {% if formula == 'capacitor_pot_energy' %}
+    {% if request.resolver_match.url_name == 'capacitor_pot_energy' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -110,7 +110,7 @@
         <p>Potential Energy of a Capacitor: {{ param2|stringformat:".2e"}}</p>
     {% endif %}
 
-    {% if formula == 'gravitational_pot_energy' %}
+    {% if request.resolver_match.url_name == 'gravitational_pot_energy' %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -120,7 +120,7 @@
     {% endif %}
 
     
-    {% if formula == 'ohm_law' %}
+    {% if request.resolver_match.url_name == 'ohm_law' %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
@@ -129,7 +129,7 @@
         <p>Ohm Voltage:{{param2|stringformat:".2e"}}</p>
     {% endif %}
 
-    {% if formula == 'snell_law' %}
+    {% if request.resolver_match.url_name == 'snell_law' %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
@@ -138,7 +138,7 @@
         <p>Incident Angle of Medium 2:{{param2}}</p>
     {% endif %}
 
-    {% if formula == 'emf_conductor' %}
+    {% if request.resolver_match.url_name == 'emf_conductor' %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
@@ -146,6 +146,51 @@
         </form>
         <p>EMF of a conductor:{{param2}}</p>
     {% endif %}
-        
+
+    {% if request.resolver_match.url_name == 'coulomb_law' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find force</button>
+        </form>
+        <p>Electrostatic Force:{{param2|stringformat:".3e"}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'grav_law' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find force</button>
+        </form>
+        <p>Gravitational Force:{{param2|stringformat:".3e"}}</p>
+    {% endif %}
+    
+    {% if request.resolver_match.url_name == 'centripetal_force' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find force</button>
+        </form>
+        <p>Centripetal Force:{{param2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'focal_length' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find force</button>
+        </form>
+        <p>Focal Length:{{param2|floatformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'einstein_eq' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find energy</button>
+        </form>
+        <p>Energy of an atom:{{param2|stringformat:".1e"}}</p>
+    {% endif %}
+
 </body>
 </html>
