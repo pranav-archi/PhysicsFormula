@@ -18,4 +18,9 @@ urlpatterns = [
     path('ohm_law/',views.ohm_law,name='ohm_law'),
     path('snell_law/', views.snell_law, name='snell_law'),
     path('emf_conductor/', views.emf_wire,name='emf_conductor'),
+    path('coulomb_law/', views.coulomb_law, name='coulomb_law'),
+    path('grav_law/', views.gravitational_law, name='grav_law'),
+    path('centripetal_force/',views.centripetal_force, name='centripetal_force'),
+    path('focal_length/', views.thin_lens_eq, name='focal_length'),
+    path('energy_quant/',views.einstein_eq,name='einstein_eq'),
 ]
