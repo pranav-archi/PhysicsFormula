@@ -50,3 +50,25 @@ class PhysicsForm11(forms.Form):
     B=forms.FloatField(label='Enter the magnetic field strength:')
     l=forms.FloatField(label='Enter the length of the wire:')
     v=forms.FloatField(label='Enter the velocity:')
+
+class PhysicsForm12(forms.Form):
+    q1=forms.FloatField(label='Enter the charge of first atom:')
+    q2=forms.FloatField(label='Enter the charge of second atom:')
+    r=forms.FloatField(label='Enter the distance between two atoms:')
+
+class PhysicsForm13(forms.Form):
+    m1=forms.FloatField(label='Enter the mass of first object:')
+    m2=forms.FloatField(label='Enter the mass of second object:')
+    r=forms.FloatField(label='Enter the distance between two objects:')
+    
+class PhysicsForm14(forms.Form):
+    m=forms.IntegerField(label='Enter the mass:')
+    v=forms.IntegerField(label='Enter the velocity:')
+    r=forms.IntegerField(label='Enter the radius:')
+    
+class PhysicsForm15(forms.Form):
+    d_i=forms.IntegerField(label='Enter the image distance:')
+    d_o=forms.IntegerField(label='Enter the object distance:')
+    
+class PhysicsForm16(forms.Form):
+    m=forms.IntegerField(label='Enter the mass:')

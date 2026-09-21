@@ -2,10 +2,12 @@ import math
 from django.shortcuts import render
 from app1.forms import *
 
+G=6.674e-11
 h=6.626e-34
 c=3e8
 g=9.8
 epsilon0=8.854e-12
+k_coulomb=8.99e9
 
 def home(request):     
     return render(request,'app1/index.html')
@@ -73,6 +75,26 @@ def calc_emf_conductor(B,l,v):
     emf=B*l*v
     return emf
 
+def calc_elec_force(q1,q2,r):
+    F_e= (k_coulomb*q1*q2)/(r**2)
+    return F_e
+
+def calc_grav_force(q1,q2,r):
+    F_g= (G*q1*q2)/(r**2)
+    return F_g
+
+def calc_centripetal_force(m,v,r):
+    F_c=(m*(v**2))/r
+    return F_c
+
+def calc_focal_length(d_i,d_o):
+    f=1/((1/d_i)+(1/d_o))
+    return f
+
+def calc_energy_atom(m):
+    E=m*(c**2)
+    return E
+
 def final_velocity1(request):
     if request.method=='POST':
         form1=PhysicsForm(request.POST)
@@ -82,9 +104,9 @@ def final_velocity1(request):
             a=data.get('a')
             s=data.get('s')
             result=calc_final_velocity1(u,a,s)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)','formula':'final_velocity1'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)'})
     else: form1=PhysicsForm() 
-    return render(request,'app1/formulas.html',{'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)','formula':'final_velocity1'})  
+    return render(request,'app1/formulas.html',{'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)'})  
 
     
 def final_velocity2(request):
@@ -96,9 +118,9 @@ def final_velocity2(request):
             a=data.get('a')
             t=data.get('t')
             result=calc_final_velocity2(u,a,t)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'2nd Kinematic Equation(v=u+at)','formula':'final_velocity2'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'2nd Kinematic Equation(v=u+at)'})
     else: form1=PhysicsForm1() 
-    return render(request,'app1/formulas.html',{'form':form1,'title':'2nd Kinematic Equation(v=u+at)','formula':'final_velocity2'})  
+    return render(request,'app1/formulas.html',{'form':form1,'title':'2nd Kinematic Equation(v=u+at)'})  
 
 def displacement(request):
     if request.method=='POST':
@@ -109,9 +131,9 @@ def displacement(request):
                 a=data.get('a')
                 t=data.get('t')
                 result=calc_displacement(u,a,t)
-                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'3rd Kinematic Equation(s=ut+1/2at^2)','formula':'displacement'})
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'3rd Kinematic Equation(s=ut+1/2at^2)'})
     else: form1=PhysicsForm1() 
-    return render(request,'app1/formulas.html',{'form':form1,'title':'3rd Kinematic Equation(s=ut+1/2at2)','formula':'displacement'})  
+    return render(request,'app1/formulas.html',{'form':form1,'title':'3rd Kinematic Equation(s=ut+1/2at2)'})  
 
 def energy_light(request):
     if request.method=='POST':
@@ -120,9 +142,9 @@ def energy_light(request):
             data = form1.cleaned_data
             lambda1=data.get('lambda1')
             result=energy_calc(lambda1)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Energy of a light','formula':'energy_light'})
+            return render(request,'app1/s.html',{'param2':result,'form':form1,'title':'Energy of a light'})
     else: form1=PhysicsForm2() 
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Energy of a light','formula':'energy_light'})  
+    return render(request,'app1/s.html',{'form':form1,'title':'Energy of a light'})  
 
 def time_flight(request):
     if request.method=='POST':
@@ -132,9 +154,9 @@ def time_flight(request):
                 u=data.get('u')
                 theta=data.get('theta')
                 result=calc_time_flight(theta,u)
-                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Time of flight of a Projectile','formula':'time_flight'})
+                return render(request,'app1/s.html',{'param2':result,'form':form1,'title':'Time of flight of a Projectile'})
     else: form1=PhysicsForm3() 
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Time of flight of a Projectile','formula':'time_flight'}) 
+    return render(request,'app1/s.html',{'form':form1,'title':'Time of flight of a Projectile'}) 
 
 def max_height(request):
     if request.method=='POST':
@@ -144,9 +166,9 @@ def max_height(request):
             u=data.get('u')
             theta=data.get('theta')
             result=calc_max_height(theta,u)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Maximum height of an Object in a Projectile','formula':'max_height'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Maximum height of an Object in a Projectile'})
     else: form1=PhysicsForm3() 
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Maximum height of an Object in a Projectile','formula':'max_height'})
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Maximum height of an Object in a Projectile'})
 
 def horizontal_range(request):
     if request.method=='POST':
@@ -156,9 +178,9 @@ def horizontal_range(request):
             u=data.get('u')
             theta=data.get('theta')
             result=calc_horizontal_range(theta,u)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Horizontal Range of an Object in a Projectile','formula':'horizontal_range'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Horizontal Range of an Object in a Projectile'})
     else: form1=PhysicsForm3() 
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Horizontal Range of an Object in a Projectile','formula':'horizontal_range'})
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Horizontal Range of an Object in a Projectile'})
 
 def parallel_plate_capacitance(request):
     if request.method=='POST':
@@ -169,9 +191,9 @@ def parallel_plate_capacitance(request):
             A=data.get('A')
             d=data.get('d')
             result=calc_parallel_plate_capacitance(K,A,d)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Capacitance of Parallel Plate Capacitor','formula':'par_plate_capacitance'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Capacitance of Parallel Plate Capacitor'})
     else: form1=PhysicsForm4() 
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Capacitance of Parallel Plate Capacitor','formula':'par_plate_capacitance'})
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Capacitance of Parallel Plate Capacitor'})
             
 def half_life(request):
     if request.method=='POST':
@@ -180,9 +202,9 @@ def half_life(request):
             data = form1.cleaned_data
             decay_const=data.get('decay_const')
             result=calc_half_life(decay_const)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Half life of nuclear atom','formula':'half_life'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Half life of nuclear atom'})
     else: form1=PhysicsForm5()
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Half life of nuclear atom','formula':'half_life'}) 
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Half life of nuclear atom'}) 
 
 def kinetic_energy(request):
     if request.method=='POST':
@@ -192,9 +214,9 @@ def kinetic_energy(request):
             m=data.get('m')
             v=data.get('v')
             result=calc_kinetic_energy(m,v)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Kinetic Energy','formula':'kinetic_energy'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Kinetic Energy'})
     else: form1=PhysicsForm6()
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Kinetic Energy','formula':'kinetic_energy'}) 
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Kinetic Energy'}) 
 
 def capacitor_pot_energy(request):
     if request.method=='POST':
@@ -204,9 +226,9 @@ def capacitor_pot_energy(request):
             C=data.get('C')
             V=data.get('V')
             result=calc_cap_potential_energy(C,V)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Potential energy of a Capacitor','formula':'capacitor_pot_energy'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Potential energy of a Capacitor'})
     else: form1=PhysicsForm7()
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Potential energy of a Capacitor','formula':'capacitor_pot_energy'})
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Potential energy of a Capacitor'})
 
 def grav_pot_energy(request):
     if request.method=='POST':
@@ -216,9 +238,9 @@ def grav_pot_energy(request):
             m=data.get('m')
             h=data.get('h')
             result=calc_grav_potential_energy(m,h)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Gravitational Potential energy','formula':'gravitational_pot_energy'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Gravitational Potential energy'})
     else: form1=PhysicsForm8()
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Potential energy of a Capacitor','formula':'capacitor_pot_energy'})
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Potential energy of a Capacitor'})
 
 def ohm_law(request):
     if request.method=='POST':
@@ -228,9 +250,9 @@ def ohm_law(request):
             I=data.get('I')
             R=data.get('R')
             result=calc_voltage(I,R)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Ohm's Law",'formula':'ohm_law'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Ohm's Law"})
     else: form1=PhysicsForm9()
-    return render(request,'app1/formulas.html',{'form':form1,'title':"Ohm's Law",'formula':'ohm_law'})
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Ohm's Law"})
 
 def snell_law(request):
     if request.method=='POST':
@@ -241,9 +263,9 @@ def snell_law(request):
             n1=data.get('n1')
             n2=data.get('n2')
             result=calc_incident_angle(theta1,n1,n2)
-            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Snell's Law",'formula':'snell_law'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Snell's Law"})
     else: form1=PhysicsForm10()
-    return render(request,'app1/formulas.html',{'form':form1,'title':"Snell's Law",'formula':'snell_law'})
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Snell's Law"})
 
 def emf_wire(request):
     if request.method=='POST':
@@ -254,7 +276,68 @@ def emf_wire(request):
                 l=data.get('l')
                 v=data.get('v')
                 result=calc_emf_conductor(B,l,v)
-                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"EMF of a conductor",'formula':'emf_conductor'})
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"EMF of a conductor"})
     else: form1=PhysicsForm11()
-    return render(request,'app1/formulas.html',{'form':form1,'title':"EMF of a conductor",'formula':'emf_conductor'})
-    
+    return render(request,'app1/formulas.html',{'form':form1,'title':"EMF of a conductor"})
+
+def coulomb_law(request):
+    if request.method=='POST':
+        form1= PhysicsForm12(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                q1=data.get('q1')
+                q2=data.get('q2')
+                r=data.get('r')
+                result=calc_elec_force(q1,q2,r)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Coulomb's Law"})
+    else: form1=PhysicsForm12()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Coulomb's Law"})
+
+def gravitational_law(request):
+    if request.method=='POST':
+        form1= PhysicsForm13(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                m1=data.get('m1')
+                m2=data.get('m2')
+                r=data.get('r')
+                result=calc_grav_force(m1,m2,r)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Gravitational Law"})
+    else: form1=PhysicsForm13()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Gravitational Law"})
+
+def centripetal_force(request):
+    if request.method=='POST':
+        form1= PhysicsForm14(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                m=data.get('m')
+                v=data.get('v')
+                r=data.get('r')
+                result=calc_centripetal_force(m,v,r)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Centripetal Force"})
+    else: form1=PhysicsForm14()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Centripetal Force"})
+
+def thin_lens_eq(request):
+    if request.method=='POST':
+        form1= PhysicsForm15(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                d_i=data.get('d_i')
+                d_o=data.get('d_o')
+                result=calc_focal_length(d_i,d_o)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Thin Lens Equation"})
+    else: form1=PhysicsForm15()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Thin Lens Equation"})
+
+def einstein_eq(request):
+    if request.method=='POST':
+            form1= PhysicsForm16(request.POST)
+            if form1.is_valid():
+                    data=form1.cleaned_data
+                    m=data.get('m')
+                    result=calc_energy_atom(m)
+                    return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Einstein's Energy Equation"})
+    else: form1=PhysicsForm16()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Einstein's Energy Equation"})
