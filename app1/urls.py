@@ -23,4 +23,9 @@ urlpatterns = [
     path('centripetal_force/',views.centripetal_force, name='centripetal_force'),
     path('focal_length/', views.thin_lens_eq, name='focal_length'),
     path('energy_quant/',views.einstein_eq,name='einstein_eq'),
+    path('resistivity/', views.resistivity,name='resistivity'),
+    path('rotational_kinetic_energy/', views.rot_kinetic_energy, name='rotational_kinetic_energy'),
+    path('work_energy_theorem/',views.work_energy_theorem,name='work_energy_theorem'),
+    path('net_internal_energy/',views.net_internal_energy,name='net_internal_energy'),
+    path('photon_momentum/',views.photon_momentum,name='photon_momentum')
 ]

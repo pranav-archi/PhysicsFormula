@@ -42,7 +42,7 @@ class PhysicsForm9(forms.Form):
     R=forms.FloatField(label='Enter the resistance:')
     
 class PhysicsForm10(forms.Form):
-    theta1=forms.IntegerField(label='Enter the incident angle for medium 1:')
+    theta1=forms.IntegerField(label='Enter the incident angle for medium 1:',required=False)
     n1=forms.FloatField(label='Enter the refractive index of medium 1:')
     n2=forms.FloatField(label='Enter the refractive index of medium 2:')
     
@@ -72,3 +72,20 @@ class PhysicsForm15(forms.Form):
     
 class PhysicsForm16(forms.Form):
     m=forms.IntegerField(label='Enter the mass:')
+    
+class PhysicsForm17(forms.Form):
+    R=forms.FloatField(label='Enter the resistance:')
+    A=forms.FloatField(label='Enter the area:')
+    l=forms.FloatField(label='Enter the length:')
+
+class PhysicsForm18(forms.Form):
+    I=forms.IntegerField(label='Enter the inertia:')
+    omega=forms.IntegerField(label='Enter the angular velocity:')
+    
+class PhysicsForm19(forms.Form):
+    K_f=forms.FloatField(label='Enter the final kinetic energy:')
+    K_i=forms.FloatField(label='Enter the initial kinetic energy:')
+
+class PhysicsForm20(forms.Form):
+    Q=forms.FloatField(label='Enter the net heat transfered:')
+    W=forms.FloatField(label='Enter the net work done:')

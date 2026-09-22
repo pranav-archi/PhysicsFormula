@@ -95,6 +95,26 @@ def calc_energy_atom(m):
     E=m*(c**2)
     return E
 
+def calc_resistivity(R,A,l):
+    rho=(R*A)/l
+    return rho
+
+def calc_rotational_kin_energy(I,omega):
+    K_rot=0.5*I*(omega**2)
+    return K_rot
+
+def calc_net_work(K_f,K_i):
+    net_work=K_f-K_i
+    return net_work
+
+def calc_net_internal_energy(Q,W):
+    del_U=Q-W
+    return del_U
+
+def calc_photon_momentum(lambda1):
+    p=h/lambda1
+    return p
+
 def final_velocity1(request):
     if request.method=='POST':
         form1=PhysicsForm(request.POST)
@@ -341,3 +361,63 @@ def einstein_eq(request):
                     return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Einstein's Energy Equation"})
     else: form1=PhysicsForm16()
     return render(request,'app1/formulas.html',{'form':form1,'title':"Einstein's Energy Equation"})
+
+def resistivity(request):
+    if request.method=='POST':
+        form1= PhysicsForm17(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                R=data.get('R')
+                A=data.get('A')
+                l=data.get('l')
+                result=calc_resistivity(R,A,l)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Resistivity of a Conductor"})
+    else: form1=PhysicsForm17()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Resistivity of a Conductor"})
+
+def rot_kinetic_energy(request):
+    if request.method=='POST':
+        form1= PhysicsForm18(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                I=data.get('I')
+                omega=data.get('omega')
+                result=calc_rotational_kin_energy(I,omega)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Rotational Kinetic Energy"})
+    else: form1=PhysicsForm18()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Rotational Kinetic Energy'})
+
+def work_energy_theorem(request):
+    if request.method=='POST':
+            form1= PhysicsForm19(request.POST)
+            if form1.is_valid():
+                    data=form1.cleaned_data
+                    K_f=data.get('K_f')
+                    K_i=data.get('K_i')
+                    result=calc_net_work(K_f,K_i)
+                    return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Work Energy Theorem"})
+    else: form1=PhysicsForm19()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Work Energy Theorem'})
+
+def net_internal_energy(request):
+    if request.method=='POST':
+            form1= PhysicsForm20(request.POST)
+            if form1.is_valid():
+                    data=form1.cleaned_data
+                    Q=data.get('Q')
+                    W=data.get('W')
+                    result=calc_net_internal_energy(Q,W)
+                    return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Work Energy Theorem"})
+    else: form1=PhysicsForm20()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Work Energy Theorem'})
+
+def photon_momentum(request):
+    if request.method=='POST':
+            form1= PhysicsForm2(request.POST)
+            if form1.is_valid():
+                    data=form1.cleaned_data
+                    lambda1=data.get('lambda1')
+                    result=calc_photon_momentum(lambda1)
+                    return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Photon Momentum"})
+    else: form1=PhysicsForm2()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Photon momentum'})
