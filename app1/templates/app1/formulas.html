@@ -191,6 +191,50 @@
         </form>
         <p>Energy of an atom:{{param2|stringformat:".1e"}}</p>
     {% endif %}
+    
+    {% if request.resolver_match.url_name == 'resistivity' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find resistivity</button>
+        </form>
+        <p>Resistivity of a conductor:{{param2}}</p>
+    {% endif %}
+    
+    {% if request.resolver_match.url_name == 'rotational_kinetic_energy' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Find rotational kinetic energy</button>
+        </form>
+        <p>Rotational kinetic energy:{{param2}}</p>
+    {% endif %}
 
+    {% if request.resolver_match.url_name == 'work_energy_theorem' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate net work done</button>
+        </form>
+        <p>Net work done:{{param2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'net_internal_energy' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate net internal energy</button>
+        </form>
+        <p>Net internal energy:{{param2}}</p>
+    {% endif %}
+    
+    {% if request.resolver_match.url_name == 'photon_momentum' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate momentum</button>
+        </form>
+        <p>Momentum of a photon:{{param2|stringformat:".2e"}}</p>
+    {% endif %}
 </body>
 </html>
