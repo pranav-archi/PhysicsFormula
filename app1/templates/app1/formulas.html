@@ -236,5 +236,41 @@
         </form>
         <p>Momentum of a photon:{{param2|stringformat:".2e"}}</p>
     {% endif %}
+
+    {% if request.resolver_match.url_name == 'impedance_lcr' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate impedance</button>
+        </form>
+        <p>Impedance of LCR Circuit:{{param2|floatformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'resonant_frequency' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate impedance</button>
+        </form>
+        <p>Resonant Frequency:{{param2|floatformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'newton_force' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate force</button>
+        </form>
+        <p>Force:{{param2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'radioactivity_law' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate nuclei left</button>
+        </form>
+        <p>Number of nuclei left at time t:{{param2|floatformat:2}}</p>
+    {% endif %}
 </body>
 </html>
