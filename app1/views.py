@@ -115,6 +115,22 @@ def calc_photon_momentum(lambda1):
     p=h/lambda1
     return p
 
+def calc_impedance_lcr(R,X_C,X_L):
+    Z=math.sqrt((R**2)+((X_C-X_L)**2))
+    return Z
+
+def calc_resonant_frequency(L,C):
+    f_r=1/(2*math.pi*math.sqrt(L*C))
+    return f_r
+
+def calc_newton_force(m,a):
+    F_newton=m*a
+    return F_newton
+
+def calc_nuclei_left(N_0,decay_const,t):
+    N_t=N_0*(math.exp(-decay_const*t))
+    return N_t
+
 def final_velocity1(request):
     if request.method=='POST':
         form1=PhysicsForm(request.POST)
@@ -162,9 +178,9 @@ def energy_light(request):
             data = form1.cleaned_data
             lambda1=data.get('lambda1')
             result=energy_calc(lambda1)
-            return render(request,'app1/s.html',{'param2':result,'form':form1,'title':'Energy of a light'})
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Energy of a light'})
     else: form1=PhysicsForm2() 
-    return render(request,'app1/s.html',{'form':form1,'title':'Energy of a light'})  
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Energy of a light'})  
 
 def time_flight(request):
     if request.method=='POST':
@@ -174,9 +190,9 @@ def time_flight(request):
                 u=data.get('u')
                 theta=data.get('theta')
                 result=calc_time_flight(theta,u)
-                return render(request,'app1/s.html',{'param2':result,'form':form1,'title':'Time of flight of a Projectile'})
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Time of flight of a Projectile'})
     else: form1=PhysicsForm3() 
-    return render(request,'app1/s.html',{'form':form1,'title':'Time of flight of a Projectile'}) 
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Time of flight of a Projectile'}) 
 
 def max_height(request):
     if request.method=='POST':
@@ -421,3 +437,53 @@ def photon_momentum(request):
                     return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Photon Momentum"})
     else: form1=PhysicsForm2()
     return render(request,'app1/formulas.html',{'form':form1,'title':'Photon momentum'})
+
+def impedance_lcr(request):
+    if request.method=='POST':
+        form1= PhysicsForm21(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                R=data.get('R')
+                X_C=data.get('X_C')
+                X_L=data.get('X_L')
+                result=calc_impedance_lcr(R,X_C,X_L)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Impedance of LCR Circuit"})
+    else: form1=PhysicsForm21()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Impedance of LCR Circuit"})
+
+def resonant_frequency(request):
+    if request.method=='POST':
+        form1= PhysicsForm22(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                L=data.get('L')
+                C=data.get('C')
+                result=calc_resonant_frequency(L,C)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Impedance of LCR Circuit"})
+    else: form1=PhysicsForm22()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Impedance of LCR Circuit"})
+
+def newton_force(request):
+    if request.method=='POST':
+        form1= PhysicsForm23(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                m=data.get('m')
+                a=data.get('a')
+                result=calc_newton_force(m,a)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Newton's 2nd Law of Motion"})
+    else: form1=PhysicsForm23()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Newton's Law of Gravitation"})
+
+def radioactivity_law(request):
+    if request.method=='POST':
+        form1= PhysicsForm24(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                N_0=data.get('N_0')
+                decay_const=data.get('decay_const')
+                t=data.get('t')
+                result=calc_nuclei_left(N_0,decay_const,t)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Radioactivity Decay Law"})
+    else: form1=PhysicsForm24()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Radioactivity Decay Law"})

@@ -27,5 +27,9 @@ urlpatterns = [
     path('rotational_kinetic_energy/', views.rot_kinetic_energy, name='rotational_kinetic_energy'),
     path('work_energy_theorem/',views.work_energy_theorem,name='work_energy_theorem'),
     path('net_internal_energy/',views.net_internal_energy,name='net_internal_energy'),
-    path('photon_momentum/',views.photon_momentum,name='photon_momentum')
+    path('photon_momentum/',views.photon_momentum,name='photon_momentum'),
+    path('impedance/', views.impedance_lcr, name='impedance_lcr'),
+    path('resonant_frequency/',views.resonant_frequency,name='resonant_frequency'),
+    path('newton_force/',views.newton_force,name='newton_force'),
+    path('radioactivity_law/',views.radioactivity_law,name='radioactivity_law'),
 ]

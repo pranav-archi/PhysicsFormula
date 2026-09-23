@@ -89,3 +89,22 @@ class PhysicsForm19(forms.Form):
 class PhysicsForm20(forms.Form):
     Q=forms.FloatField(label='Enter the net heat transfered:')
     W=forms.FloatField(label='Enter the net work done:')
+    
+class PhysicsForm21(forms.Form):
+    R=forms.FloatField(label='Enter the resistance:')
+    X_L=forms.FloatField(label='Enter the inductive reactance:')
+    X_C=forms.FloatField(label='Enter the capacitive reactance:')
+    
+class PhysicsForm22(forms.Form):
+    L=forms.FloatField(label='Enter the inductance value:')
+    C=forms.FloatField(label='Enter the capacitance value:')
+
+class PhysicsForm23(forms.Form):
+    m=forms.IntegerField(label='Enter the mass:')
+    a=forms.IntegerField(label='Enter the acceleration:')
+    
+class PhysicsForm24(forms.Form):
+    N_0=forms.IntegerField(label='Enter the number of nuclei left at time(t=0):')
+    decay_const=forms.FloatField(label='Enter the decay constant:')
+    t=forms.IntegerField(label='Enter the time taken:')
+    
