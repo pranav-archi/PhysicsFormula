@@ -131,6 +131,31 @@ def calc_nuclei_left(N_0,decay_const,t):
     N_t=N_0*(math.exp(-decay_const*t))
     return N_t
 
+def calc_pot_energy_inductor(L,I):
+    U_L=0.5*L*(I**2)
+    return U_L
+
+def calc_escape_velocity(R):
+    v_e=math.sqrt(2*g*R)
+    return v_e
+
+def calc_orbital_velocity(R):
+    v_o=math.sqrt(g*R)
+    return v_o
+
+def calc_critical_angle(n1,n2):
+    if n1 <= n2: return "n1 should be greater than n2"
+    theta_c=math.asin(n2/n1)
+    return math.degrees(theta_c)
+
+def calc_stress(E,strain):
+    stress=E*strain
+    return stress
+
+def calc_pot_energy_spring(k,x):
+    U_s=0.5*k*(x**2)
+    return U_s
+
 def final_velocity1(request):
     if request.method=='POST':
         form1=PhysicsForm(request.POST)
@@ -143,7 +168,6 @@ def final_velocity1(request):
             return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)'})
     else: form1=PhysicsForm() 
     return render(request,'app1/formulas.html',{'form':form1,'title':'1st Kinematic Equation(v2=u2+2as)'})  
-
     
 def final_velocity2(request):
     if request.method=='POST':
@@ -487,3 +511,74 @@ def radioactivity_law(request):
                 return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Radioactivity Decay Law"})
     else: form1=PhysicsForm24()
     return render(request,'app1/formulas.html',{'form':form1,'title':"Radioactivity Decay Law"})
+
+def pot_energy_inductor(request):
+    if request.method=='POST':
+        form1= PhysicsForm25(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                L=data.get('L')
+                I=data.get('I')
+                result=calc_pot_energy_inductor(L,I)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Magnetic Potential Energy of an Inductor"})
+    else: form1=PhysicsForm25()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Magnetic Potential Energy of an Inductor"})
+
+
+def escape_velocity(request):
+    if request.method=='POST':
+        form1= PhysicsForm26(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                R=data.get('R')
+                result=calc_escape_velocity(R)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Escape Velocity of a planet"})
+    else: form1=PhysicsForm26()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Escape Velocity of a planet"})
+
+def orbital_velocity(request):
+    if request.method=='POST':
+        form1= PhysicsForm26(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                R=data.get('R')
+                result=calc_orbital_velocity(R)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Orbital Velocity of a planet"})
+    else: form1=PhysicsForm26()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Orbital Velocity of a planet"})
+    
+def critical_angle(request):
+    if request.method=='POST':
+        form1= PhysicsForm27(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                n1=data.get('n1')
+                n2=data.get('n2')
+                result=calc_critical_angle(n1,n2)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Critical Angle"})
+    else: form1=PhysicsForm27()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Critical Angle"})
+
+def hooke_law(request):
+    if request.method=='POST':
+            form1= PhysicsForm28(request.POST)
+            if form1.is_valid():
+                data=form1.cleaned_data
+                E=data.get('E')
+                strain=data.get('strain')
+                result=calc_stress(E,strain)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Hooke's Law of Elasticity"})
+    else: form1=PhysicsForm28()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Hooke's Law of Elasticity"})
+
+def pot_energy_spring(request):
+    if request.method=='POST':
+        form1= PhysicsForm29(request.POST)
+        if form1.is_valid():
+                data=form1.cleaned_data
+                k=data.get('k')
+                x=data.get('x')
+                result=calc_pot_energy_spring(k,x)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Critical Angle"})
+    else: form1=PhysicsForm29()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Critical Angle"})    

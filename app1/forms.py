@@ -108,3 +108,21 @@ class PhysicsForm24(forms.Form):
     decay_const=forms.FloatField(label='Enter the decay constant:')
     t=forms.IntegerField(label='Enter the time taken:')
     
+class PhysicsForm25(forms.Form):
+    L=forms.FloatField(label='Enter the inductance value:')
+    I=forms.FloatField(label='Enter the electric current value:')
+
+class PhysicsForm26(forms.Form):
+    R=forms.FloatField(label='Enter the radius of the planet:')
+    
+class PhysicsForm27(forms.Form):
+    n1=forms.FloatField(label='Enter the refractive index of medium 1(n1):')
+    n2=forms.FloatField(label='Enter the refractive index of medium 2(n2):')
+    
+class PhysicsForm28(forms.Form):
+    E=forms.FloatField(label='Enter the modulus of elasticity:')
+    strain=forms.FloatField(label='Enter the strain value:')
+
+class PhysicsForm29(forms.Form):
+    k=forms.IntegerField(label='Enter the spring constant:')
+    x=forms.FloatField(label='Enter the displacement of the spring from the equilibrium:')

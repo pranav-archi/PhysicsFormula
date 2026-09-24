@@ -32,4 +32,10 @@ urlpatterns = [
     path('resonant_frequency/',views.resonant_frequency,name='resonant_frequency'),
     path('newton_force/',views.newton_force,name='newton_force'),
     path('radioactivity_law/',views.radioactivity_law,name='radioactivity_law'),
+    path('potential_energy_inductor/',views.pot_energy_inductor,name='potential_energy_inductor'),
+    path('escape_velocity/', views.escape_velocity,name='escape_velocity'),
+    path('orbital_velocity/', views.orbital_velocity, name='orbital_velocity'),
+    path('critical_angle/', views.critical_angle, name='critical_angle'),
+    path('hooke_law/',views.hooke_law,name='hooke_law'),
+    path('potential_energy_spring/',views.pot_energy_spring,name='potential_energy_spring')
 ]
