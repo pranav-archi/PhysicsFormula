@@ -272,5 +272,67 @@
         </form>
         <p>Number of nuclei left at time t:{{param2|floatformat:2}}</p>
     {% endif %}
+
+    {% if request.resolver_match.url_name == 'potential_energy_inductor' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Potential Energy</button>
+        </form>
+        <p>Magnetic potential energy of an inductor:{{param2|stringformat:".2e"}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'escape_velocity' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Escape Velocity</button>
+        </form>
+        <p>Escape velocity:{{param2|stringformat:".2e"}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'orbital_velocity' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Orbital Velocity</button>
+        </form>
+        <p>Orbital velocity:{{param2|stringformat:".2e"}}</p>
+    {% endif %}
+
+
+    {% if request.resolver_match.url_name == 'critical_angle' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Critical Angle</button>
+        </form>
+        {% if param2 %}
+            {% if param2|stringformat:"s" == "n1 should be greater than n2" %}
+                <p>{{ param2 }}</p>
+            {% else %}
+                <p>Critical Angle: {{ param2|floatformat:2 }}</p>
+            {% endif %}
+        {% endif %}
+        
+    {% endif %}
+    
+    {% if request.resolver_match.url_name == 'hooke_law' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Stress</button>
+        </form>
+        <p>Stress:{{param2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'potential_energy_spring' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Potential Energy</button>
+        </form>
+        <p>Potential energy of a spring:{{param2}}</p>
+    {% endif %}
 </body>
 </html>
