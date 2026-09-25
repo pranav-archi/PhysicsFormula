@@ -261,7 +261,7 @@
             {{ form.as_p }}
             <button type="submit">Calculate force</button>
         </form>
-        <p>Force:{{param2}}</p>
+        <p>Force:{{param2}}N</p>
     {% endif %}
 
     {% if request.resolver_match.url_name == 'radioactivity_law' %}
@@ -333,6 +333,52 @@
             <button type="submit">Calculate Potential Energy</button>
         </form>
         <p>Potential energy of a spring:{{param2}}</p>
+    {% endif %}
+
+    
+    {% if request.resolver_match.url_name == 'ideal_gas_law' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate Temperature</button>
+        </form>
+        <p>Temperature:{{param2|floatformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'magnetic_force_charge' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate magnetic force</button>
+        </form>
+        <p>Magnetic force on a moving charge:{{param2|floatformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'magnetic_force_wire' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate magnetic force</button>
+        </form>
+        <p>Magnetic force on a current carrying wire:{{param2|floatformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'refractive_index' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Refractive Index</button>
+        </form>
+        <p>Refractive Index of a Medium:{{param2|floatformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'wavelength' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate wavelength</button>
+        </form>
+        <p>Wavelength of light:{{param2|stringformat:".2e"}}</p>
     {% endif %}
 </body>
 </html>

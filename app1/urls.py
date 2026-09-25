@@ -37,5 +37,10 @@ urlpatterns = [
     path('orbital_velocity/', views.orbital_velocity, name='orbital_velocity'),
     path('critical_angle/', views.critical_angle, name='critical_angle'),
     path('hooke_law/',views.hooke_law,name='hooke_law'),
-    path('potential_energy_spring/',views.pot_energy_spring,name='potential_energy_spring')
+    path('potential_energy_spring/',views.pot_energy_spring,name='potential_energy_spring'),
+    path('ideal_gas_law/',views.ideal_gas_law,name='ideal_gas_law'),
+    path('magnetic_force_charge/',views.magnetic_force_charge,name='magnetic_force_charge'),
+    path('magnetic_force_wire/',views.magnetic_force_wire,name='magnetic_force_wire'),
+    path('refractive_index/',views.refractive_index,name='refractive_index'),
+    path('wavelength/',views.wavelength_debroglie,name='wavelength'), 
 ]

@@ -126,3 +126,27 @@ class PhysicsForm28(forms.Form):
 class PhysicsForm29(forms.Form):
     k=forms.IntegerField(label='Enter the spring constant:')
     x=forms.FloatField(label='Enter the displacement of the spring from the equilibrium:')
+    
+class PhysicsForm30(forms.Form):
+    P=forms.FloatField(label='Enter the pressure:')
+    V=forms.FloatField(label='Enter the volume:')
+    n=forms.FloatField(label='Enter the number of moles in an atom:')
+    
+class PhysicsForm31(forms.Form):
+    q=forms.FloatField(label='Enter the charge:')
+    v=forms.FloatField(label='Enter the velocity of the moving charged particle:')
+    B=forms.FloatField(label='Enter the magnetic field strength:')
+    theta=forms.IntegerField(label='Enter the angle between velocity and magnetic field vectors:')
+
+class PhysicsForm32(forms.Form):
+    I=forms.FloatField(label='Enter the electric current of wire:')
+    L=forms.FloatField(label='Enter the length of the wire:')
+    B=forms.FloatField(label='Enter the magnetic field strength:')
+    theta=forms.IntegerField(label='Enter the angle between length and magnetic field vectors:')
+
+class PhysicsForm33(forms.Form):
+    v=forms.FloatField(label='Enter the speed of a medium:')
+
+class PhysicsForm34(forms.Form):
+    m=forms.IntegerField(label='Enter the mass:')
+    K=forms.FloatField(label='Enter the kinetic energy:')

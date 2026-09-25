@@ -8,6 +8,7 @@ c=3e8
 g=9.8
 epsilon0=8.854e-12
 k_coulomb=8.99e9
+R=8.314
 
 def home(request):     
     return render(request,'app1/index.html')
@@ -155,6 +156,28 @@ def calc_stress(E,strain):
 def calc_pot_energy_spring(k,x):
     U_s=0.5*k*(x**2)
     return U_s
+
+def calc_temperature(P,V,n):
+    T=(P*V)/(n*R)
+    return T
+
+def calc_magnetic_force_charge(q,v,B,theta_degrees):
+    theta_radians=math.radians(theta_degrees)
+    F_b=q*v*B*math.sin(theta_radians)
+    return F_b
+
+def calc_magnetic_force_wire(I,L,B,theta_degrees):
+    theta_radians=math.radians(theta_degrees)
+    F_b=I*L*B*math.sin(theta_radians)
+    return F_b
+
+def calc_refractive_index(v):
+    n=c/v
+    return n
+
+def calc_wavelength(m,K):
+    lambda1=h/(math.sqrt(2*m*K))
+    return lambda1
 
 def final_velocity1(request):
     if request.method=='POST':
@@ -579,6 +602,71 @@ def pot_energy_spring(request):
                 k=data.get('k')
                 x=data.get('x')
                 result=calc_pot_energy_spring(k,x)
-                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Critical Angle"})
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Potential Energy of a Spring"})
     else: form1=PhysicsForm29()
-    return render(request,'app1/formulas.html',{'form':form1,'title':"Critical Angle"})    
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Potential Energy of a Spring"})
+
+def ideal_gas_law(request):
+    if request.method=='POST':
+        form1=PhysicsForm30(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            P=data.get('P')
+            V=data.get('V')
+            n=data.get('n')
+            result=calc_temperature(P,V,n)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Ideal Gas Law Equation'})
+    else: form1=PhysicsForm30()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Ideal Gas Law Equation'})
+
+def magnetic_force_charge(request):
+    if request.method=='POST':
+            form1=PhysicsForm31(request.POST)
+            if form1.is_valid():
+                data=form1.cleaned_data
+                q=data.get('q')
+                v=data.get('v')
+                B=data.get('B')
+                theta=data.get('theta')
+                result=calc_magnetic_force_charge(q,v,B,theta)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic force on a moving charge'})
+    else: form1=PhysicsForm31()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Magnetic force on a moving charge'})
+
+def magnetic_force_wire(request):
+    if request.method=='POST':
+            form1=PhysicsForm32(request.POST)
+            if form1.is_valid():
+                data=form1.cleaned_data
+                I=data.get('I')
+                L=data.get('L')
+                B=data.get('B')
+                theta=data.get('theta')
+                result=calc_magnetic_force_wire(I,L,B,theta)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic force on a current carrying wire'})
+    else: form1=PhysicsForm32()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Magnetic force on a current carrying wire'})
+
+def refractive_index(request):
+    if request.method=='POST':
+            form1=PhysicsForm33(request.POST)
+            if form1.is_valid():
+                data=form1.cleaned_data
+                v=data.get('v')
+                result=calc_refractive_index(v)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Refractive Index of a Medium'})
+    else: form1=PhysicsForm33()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Refractive Index of a Medium'})
+
+def wavelength_debroglie(request):
+    if request.method=='POST':
+                form1=PhysicsForm34(request.POST)
+                if form1.is_valid():
+                    data=form1.cleaned_data
+                    m=data.get('m')
+                    K=data.get('K')
+                    result=calc_wavelength(m,K)
+                    return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Refractive Index of a Medium'})
+    else: form1=PhysicsForm34()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Refractive Index of a Medium'})
+    
