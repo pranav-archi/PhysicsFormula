@@ -2,6 +2,7 @@ import math
 from django.shortcuts import render
 from app1.forms import *
 
+#constants
 G=6.674e-11
 h=6.626e-34
 c=3e8
@@ -9,10 +10,13 @@ g=9.8
 epsilon0=8.854e-12
 k_coulomb=8.99e9
 R=8.314
+I_0=1e-12
 
+#main fn
 def home(request):     
     return render(request,'app1/index.html')
 
+#calculation functions
 def calc_final_velocity1(u,a,s):
     return math.sqrt(u**2+(2*a*s))
 
@@ -179,6 +183,28 @@ def calc_wavelength(m,K):
     lambda1=h/(math.sqrt(2*m*K))
     return lambda1
 
+def calc_inertia(m,r):
+    I=m*(r**2)
+    return I
+
+def calc_sound_intensity_level(I):
+    if I<=0.0: return 0.0
+    beta=10*math.log10(I/I_0)
+    return beta
+
+def calc_work_isothermal(n,T,V_f,V_i):
+    W=n*R*T*math.log(V_f/V_i)
+    return W
+
+def calc_drift_velocity(I,n,q,A):
+    v_d=I/(n*q*A)
+    return v_d
+
+def calc_carnot_efficiency(T_c,T_h):
+    carnot_eff=1-(T_c/T_h)
+    return carnot_eff
+
+#views for formulas
 def final_velocity1(request):
     if request.method=='POST':
         form1=PhysicsForm(request.POST)
@@ -621,29 +647,29 @@ def ideal_gas_law(request):
 
 def magnetic_force_charge(request):
     if request.method=='POST':
-            form1=PhysicsForm31(request.POST)
-            if form1.is_valid():
-                data=form1.cleaned_data
-                q=data.get('q')
-                v=data.get('v')
-                B=data.get('B')
-                theta=data.get('theta')
-                result=calc_magnetic_force_charge(q,v,B,theta)
-                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic force on a moving charge'})
+        form1=PhysicsForm31(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            q=data.get('q')
+            v=data.get('v')
+            B=data.get('B')
+            theta=data.get('theta')
+            result=calc_magnetic_force_charge(q,v,B,theta)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic force on a moving charge'})
     else: form1=PhysicsForm31()
     return render(request,'app1/formulas.html',{'form':form1,'title':'Magnetic force on a moving charge'})
 
 def magnetic_force_wire(request):
     if request.method=='POST':
-            form1=PhysicsForm32(request.POST)
-            if form1.is_valid():
-                data=form1.cleaned_data
-                I=data.get('I')
-                L=data.get('L')
-                B=data.get('B')
-                theta=data.get('theta')
-                result=calc_magnetic_force_wire(I,L,B,theta)
-                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic force on a current carrying wire'})
+        form1=PhysicsForm32(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            I=data.get('I')
+            L=data.get('L')
+            B=data.get('B')
+            theta=data.get('theta')
+            result=calc_magnetic_force_wire(I,L,B,theta)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic force on a current carrying wire'})
     else: form1=PhysicsForm32()
     return render(request,'app1/formulas.html',{'form':form1,'title':'Magnetic force on a current carrying wire'})
 
@@ -660,13 +686,75 @@ def refractive_index(request):
 
 def wavelength_debroglie(request):
     if request.method=='POST':
-                form1=PhysicsForm34(request.POST)
-                if form1.is_valid():
-                    data=form1.cleaned_data
-                    m=data.get('m')
-                    K=data.get('K')
-                    result=calc_wavelength(m,K)
-                    return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Refractive Index of a Medium'})
+        form1=PhysicsForm34(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            m=data.get('m')
+            K=data.get('K')
+            result=calc_wavelength(m,K)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'DeBroglie Wavelength'})
     else: form1=PhysicsForm34()
-    return render(request,'app1/formulas.html',{'form':form1,'title':'Refractive Index of a Medium'})
+    return render(request,'app1/formulas.html',{'form':form1,'title':'DeBroglie Wavelength'})
+
+def moment_of_inertia(request):
+    if request.method=='POST':
+        form1=PhysicsForm35(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            m=data.get('m')
+            r=data.get('r')
+            result=calc_inertia(m,r)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Moment of Inertia'})
+    else: form1=PhysicsForm35()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Moment of Inertia'})
     
+def sound_intensity_level(request):
+    if request.method=='POST':
+        form1=PhysicsForm36(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            I=data.get('I')
+            result=calc_sound_intensity_level(I)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Sound Intensity Level'})
+    else: form1=PhysicsForm36()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Sound Intensity Level'})
+    
+def work_isothermal(request):
+    if request.method=='POST':
+        form1=PhysicsForm37(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            n=data.get('n')
+            T=data.get('T')
+            V_final=data.get('V_f')
+            V_initial=data.get('V_i')
+            result=calc_work_isothermal(n,T,V_final,V_initial)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Work done in an isothermal process'})
+    else: form1=PhysicsForm37()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Work done in an isothermal process'})
+
+def drift_velocity(request):
+    if request.method=='POST':
+        form1=PhysicsForm38(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            I=data.get('I')
+            n=data.get('n')
+            q=data.get('q')
+            A=data.get('A')
+            result=calc_drift_velocity(I,n,q,A)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Drift velocity of an electron'})
+    else: form1=PhysicsForm38()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Drift velocity of an electron'})
+
+def carnot_efficiency(request):
+    if request.method=='POST':
+        form1=PhysicsForm39(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            T_c=data.get('T_c')
+            T_h=data.get('T_h')
+            result=calc_carnot_efficiency(T_c,T_h)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Drift velocity of an electron'})
+    else: form1=PhysicsForm39()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Drift velocity of an electron'})

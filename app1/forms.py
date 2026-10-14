@@ -150,3 +150,26 @@ class PhysicsForm33(forms.Form):
 class PhysicsForm34(forms.Form):
     m=forms.IntegerField(label='Enter the mass:')
     K=forms.FloatField(label='Enter the kinetic energy:')
+    
+class PhysicsForm35(forms.Form):
+    m=forms.IntegerField(label='Enter the mass:')
+    r=forms.IntegerField(label='Enter the radius:')
+    
+class PhysicsForm36(forms.Form):
+    I=forms.FloatField(label='Enter the sound intensity in a medium:')
+    
+class PhysicsForm37(forms.Form):
+    n=forms.FloatField(label='Enter the number of moles in an atom:')
+    T=forms.FloatField(label='Enter the temperature:')
+    V_f=forms.FloatField(label='Enter the final volume:')
+    V_i=forms.FloatField(label='Enter the initial volume:')
+    
+class PhysicsForm38(forms.Form):
+    I=forms.FloatField(label='Enter the electric current:')
+    n=forms.FloatField(label='Enter the carrier density:')
+    q=forms.FloatField(label='Enter the charge:')
+    A=forms.FloatField(label='Enter the area:')
+    
+class PhysicsForm39(forms.Form):
+    T_c=forms.IntegerField(label='Enter the temperature in cold reservoir:')
+    T_h=forms.IntegerField(label='Enter the temperature in hot reservoir:')

@@ -43,4 +43,9 @@ urlpatterns = [
     path('magnetic_force_wire/',views.magnetic_force_wire,name='magnetic_force_wire'),
     path('refractive_index/',views.refractive_index,name='refractive_index'),
     path('wavelength/',views.wavelength_debroglie,name='wavelength'), 
+    path('moment_inertia/',views.moment_of_inertia,name='moment_inertia'),
+    path('sound_intensity_level/',views.sound_intensity_level,name='sound_intensity_level'),
+    path('work_isothermal/',views.work_isothermal,name='work_isothermal'),
+    path('drift_velocity/',views.drift_velocity,name='drift_velocity'),
+    path('carnot_efficiency/',views.carnot_efficiency,name='carnot_efficiency'),
 ]

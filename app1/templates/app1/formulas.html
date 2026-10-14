@@ -380,5 +380,50 @@
         </form>
         <p>Wavelength of light:{{param2|stringformat:".2e"}}</p>
     {% endif %}
+
+    {% if request.resolver_match.url_name == 'moment_inertia' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate moment of inertia</button>
+        </form>
+        <p>Moment of inertia:{{param2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'sound_intensity_level' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate sound intensity level</button>
+        </form>
+        <p>Sound Intensity Level:{{param2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'work_isothermal' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate work</button>
+        </form>
+        <p>Work done in an isothermal process:{{param2|stringformat:".2e"}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'drift_velocity' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate drift velocity</button>
+        </form>
+        <p>Drift velocity of a carrier:{{param2|stringformat:".2e"}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'carnot_efficiency' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate efficiency of Carnot Engine</button>
+        </form>
+        <p>Efficiency of a Carnot Engine:{{param2|floatformat:2}}</p>
+    {% endif %}
 </body>
 </html>
