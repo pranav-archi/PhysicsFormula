@@ -50,6 +50,6 @@ urlpatterns = [
     path('carnot_efficiency/',views.carnot_efficiency,name='carnot_efficiency'),
     path('magnetic_field_wire/',views.magnetic_field_wire,name='magnetic_field_wire'),
     path('magnetic_field_loop/',views.magnetic_field_loop,name='magnetic_field_loop'),
-    path('magnetic_field_solenoid/',views.magnetic_field_loop,name='magnetic_field_solenoid'),
+    path('magnetic_field_solenoid/',views.magnetic_field_solenoid,name='magnetic_field_solenoid'),
     path('focal_length1/',views.lens_makers_eq,name='focal_length1'),
 ]
