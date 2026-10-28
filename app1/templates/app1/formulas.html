@@ -425,5 +425,42 @@
         </form>
         <p>Efficiency of a Carnot Engine:{{param2|floatformat:2}}</p>
     {% endif %}
+
+    {% if request.resolver_match.url_name == 'magnetic_field_wire' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate magnetic field</button>
+        </form>
+        <p>Magnetic field across a long straight wire:{{param2|stringformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'magnetic_field_loop' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate magnetic field</button>
+        </form>
+        <p>Magnetic field across center of circular loop:{{param2|stringformat:2}}</p>
+    {% endif %}
+    
+    {% if request.resolver_match.url_name == 'magnetic_field_solenoid' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate magnetic field</button>
+        </form>
+        <p>Magnetic field across a solenoid:{{param2|stringformat:2}}</p>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'focal_length1' %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Calculate focal length</button>
+        </form>
+        <p>Magnetic field across a solenoid:{{param2|floatformat:2}}</p>
+    {% endif %}
+
 </body>
 </html>

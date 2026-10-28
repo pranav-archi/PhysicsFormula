@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    
     <h1>Physics Formula</h1>
     <form method="post">
         {% csrf_token %}
@@ -148,6 +147,18 @@
             </article><br><br>
             <article>
                 <a href='{% url "carnot_efficiency" %}'>Carnot Engine efficiency</a>
+            </article><br><br>
+            <article>
+                <a href='{% url "magnetic_field_wire" %}'>Magnetic field across a long straight wire</a>
+            </article><br><br>
+            <article>
+                <a href='{% url "magnetic_field_loop" %}'>Magnetic field across the center of a circular loop</a>
+            </article><br><br>
+            <article>
+                <a href='{% url "magnetic_field_solenoid" %}'>Magnetic field across a solenoid</a>
+            </article><br><br>
+            <article>
+                <a href='{% url "focal_length1" %}'>Lens Maker's Equation</a>
             </article><br><br>
         </div>
     </form>
