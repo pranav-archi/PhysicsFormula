@@ -173,3 +173,18 @@ class PhysicsForm38(forms.Form):
 class PhysicsForm39(forms.Form):
     T_c=forms.IntegerField(label='Enter the temperature in cold reservoir:')
     T_h=forms.IntegerField(label='Enter the temperature in hot reservoir:')
+    
+class PhysicsForm40(forms.Form):
+    I=forms.FloatField(label='Enter the electric current:')
+    r=forms.FloatField(label='Enter the radius:')
+    
+class PhysicsForm41(forms.Form):
+    N=forms.IntegerField(label='Enter the number of turns:')
+    I=forms.FloatField(label='Enter the electric current:')
+    L=forms.FloatField(label='Enter the length:')
+    
+class PhysicsForm42(forms.Form):
+    n=forms.FloatField(label='Enter the refractive index:')
+    R1=forms.IntegerField(label='Enter the radius of curvature of first surface of lens:')
+    R2=forms.IntegerField(label='Enter the radius of curvature of second surface of lens:')
+    

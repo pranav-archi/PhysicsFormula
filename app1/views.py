@@ -11,6 +11,7 @@ epsilon0=8.854e-12
 k_coulomb=8.99e9
 R=8.314
 I_0=1e-12
+mu0=4*math.pi*1e-7
 
 #main fn
 def home(request):     
@@ -203,6 +204,22 @@ def calc_drift_velocity(I,n,q,A):
 def calc_carnot_efficiency(T_c,T_h):
     carnot_eff=1-(T_c/T_h)
     return carnot_eff
+
+def calc_magnetic_field_wire(I,r):
+    B=(mu0*I)/(2*math.pi*r)
+    return B
+
+def calc_magnetic_field_loop(I,r):
+    B=(mu0*I)/(2*r)
+    return B
+
+def calc_magnetic_field_solenoid(N,I,L):
+    B=(mu0*N*I)/L
+    return B
+
+def calc_focal_length1(n,R1,R2):
+    f=1/((n-1)*((1/R1)-(1/R2)))
+    return f
 
 #views for formulas
 def final_velocity1(request):
@@ -758,3 +775,53 @@ def carnot_efficiency(request):
             return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Drift velocity of an electron'})
     else: form1=PhysicsForm39()
     return render(request,'app1/formulas.html',{'form':form1,'title':'Drift velocity of an electron'})
+
+def magnetic_field_wire(request):
+    if request.method=='POST':
+            form1=PhysicsForm40(request.POST)
+            if form1.is_valid():
+                data=form1.cleaned_data
+                I=data.get('I')
+                r=data.get('r')
+                result=calc_magnetic_field_wire(I,r)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic field in a long straight wire'})
+    else: form1=PhysicsForm40()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Magnetic field in a long straight wire'})
+
+def magnetic_field_loop(request):
+    if request.method=='POST':
+            form1=PhysicsForm40(request.POST)
+            if form1.is_valid():
+                data=form1.cleaned_data
+                I=data.get('I')
+                r=data.get('r')
+                result=calc_magnetic_field_loop(I,r)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic field across the center of a circular loop'})
+    else: form1=PhysicsForm40()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Magnetic field across the center of a circular loop'})
+
+def magnetic_field_solenoid(request):
+    if request.method=='POST':
+            form1=PhysicsForm41(request.POST)
+            if form1.is_valid():
+                data=form1.cleaned_data
+                I=data.get('I')
+                N=data.get('N')
+                L=data.get('L')
+                result=calc_magnetic_field_solenoid(I,N,L)
+                return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':'Magnetic field across a solenoid'})
+    else: form1=PhysicsForm41()
+    return render(request,'app1/formulas.html',{'form':form1,'title':'Magnetic field across a solenoid'})
+                   
+def lens_makers_eq(request):
+    if request.method=='POST':
+        form1=PhysicsForm42(request.POST)
+        if form1.is_valid():
+            data=form1.cleaned_data
+            n=data.get('n')
+            R1=data.get('R1')
+            R2=data.get('R2')
+            result=calc_focal_length1(n,R1,R2)
+            return render(request,'app1/formulas.html',{'param2':result,'form':form1,'title':"Lens maker's equation"})
+    else: form1=PhysicsForm42()
+    return render(request,'app1/formulas.html',{'form':form1,'title':"Lens maker's equation"})
